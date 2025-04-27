@@ -1,6 +1,5 @@
 {
   "name": "parcel-react-client-starter",
-  "private": true,
   "version": "0.0.0",
   "source": "src/index.html",
   "scripts": {
@@ -9,13 +8,18 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.4",
+    "firebase": "^11.6.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.30.0",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {
+    "@reduxjs/toolkit": "^2.7.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "daisyui": "^5.0.28",
     "parcel": "^2.14.0"
   }
 }
