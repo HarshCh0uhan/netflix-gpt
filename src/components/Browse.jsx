@@ -1,11 +1,19 @@
 import React from "react";
 import Header from "./Header";
 import useNowPlayMovies from "../hooks/useNowPlayMovies";
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
   useNowPlayMovies();
 
-  return <Header />;
+  return (
+    <div className="mx-20 min-h-screen relative">
+      <Header />
+      <MainContainer />
+      <SecondaryContainer />
+    </div>
+  );
 };
 
 export default Browse;

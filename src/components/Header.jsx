@@ -43,7 +43,7 @@ const Header = () => {
 
   return (
     <div className="flex justify-between">
-      <div className="size-48">
+      <div className="size-36">
         <img src={LOGO_URL} alt="Logo" />
       </div>
       {user && <div className="flex m-4 h-full">
