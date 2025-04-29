@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { LOGO_URL } from "../utils/constants";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
 
 const Header = () => {
   const dispatch = useDispatch();

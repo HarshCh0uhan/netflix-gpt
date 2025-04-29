@@ -1,4 +1,4 @@
-import React, { use, useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Header from "./Header";
 import { BG_URL, PHOTO_URL } from "../utils/constants";
 import checkValidData from "../utils/validate";
@@ -21,9 +21,10 @@ const Login = () => {
   const password = useRef(null);
   const name = useRef(null);
 
-  const dipatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleSignIn = () => {
+    // Validate inputs
     // if (name != null) {
     //   console.log(name.current);
     // }
@@ -50,27 +51,33 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed up
-          // console.log(userCredential.user);
-          updateProfile(userCredential.user, {
-            displayName: name.current.value,
-            photoURL:
-              PHOTO_URL,
+          const user = userCredential.user;
+          
+          const displayName = name.current ? name.current.value : "User";
+          
+          // Update profile with name and photo URL
+          updateProfile(user, {
+            displayName: displayName,
+            photoURL: PHOTO_URL
           })
             .then(() => {
-              const { uid, email, displayName, photoURL } = auth.currentUser;
-              dipatch(
-                addUser({
-                  uid: uid,
-                  email: email,
-                  displayName: displayName,
-                  photoURL: photoURL,
-                })
-              );
+                const { uid, email, displayName, photoURL } = auth.currentUser;
+                
+                dispatch(
+                  addUser({
+                    uid: uid,
+                    email: email,
+                    displayName: displayName,
+                    photoURL: photoURL,
+                  })
+                );
+                
+                setSuccessMessage("Sign Up was Successful!");
             })
-            .catch((error) => {
-              setErrorMessage(error.code);
+            .catch((updateError) => {
+              console.error("Error updating profile:", updateError);
+              setErrorMessage("Error updating user profile. Please try again.");
             });
-          setSuccessMessage("Sign Up was Successful!");
         })
         .catch((error) => {
           console.log(error.code + " - " + error.message);
@@ -101,11 +108,9 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          // console.log(userCredential.user);
           setSuccessMessage("Sign In was Successful!");
         })
         .catch((error) => {
-          // console.log(error.code + " - " + error.message);
           let friendlyMessage = "";
           switch (error.code) {
             case "auth/email-already-in-use":

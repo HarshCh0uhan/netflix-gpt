@@ -5,4 +5,4 @@ export const LOGO_URL =
   "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
 
 export const PHOTO_URL =
-  "https://avatars.githubusercontent.com/u/180824552?s=400&u=e2356c62892417ee597bd1bff1b24b836a1c294a&v=4";
+  "https://i.pinimg.com/736x/47/0e/81/470e81949ee91c5f6d7527b57db1bba8.jpg";
