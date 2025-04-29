@@ -6,3 +6,11 @@ export const LOGO_URL =
 
 export const PHOTO_URL =
   "https://i.pinimg.com/736x/47/0e/81/470e81949ee91c5f6d7527b57db1bba8.jpg";
+
+export const API_OPTIONS = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MWQ0YTQzNWRkOGZiZDRjOWU4NzYxMTZiOWNiN2JkMiIsIm5iZiI6MTc0NTkxODcwMi43MTcsInN1YiI6IjY4MTA5YWVlYmEyNDFkOGFlYTgxMzlkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Q9B5wvtkI3mtwQtasYWRPCUI3YkkHzlCGNB0F9pfU3g'
+  }
+};
