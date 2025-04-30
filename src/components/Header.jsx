@@ -50,20 +50,20 @@ const Header = () => {
       <div className="flex flex-row justify-between items-center">
         {/* Logo */}
         <img className="w-24 sm:w-32 md:w-40" src={LOGO_URL} alt="logo" />
-        
+
         {/* Desktop Menu */}
         {user && (
           <div className="hidden md:flex p-2 items-center gap-3">
-            <img
-              className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-md object-cover"
-              alt="usericon"
-              src={user?.photoURL}
-            />
-            <div className="hidden lg:block text-white text-sm">
+            <div className="hidden lg:flex flex-col items-center text-white text-sm font-bold">
+              <img
+                className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-md object-cover"
+                alt="usericon"
+                src={user?.photoURL}
+              />
               {user?.displayName}
             </div>
-            <button 
-              onClick={handleSignOut} 
+            <button
+              onClick={handleSignOut}
               className="font-bold bg-red-600 hover:bg-red-700 px-2 py-1 md:px-3 md:py-2 text-white text-sm rounded-md transition-colors"
             >
               Sign Out
@@ -74,7 +74,7 @@ const Header = () => {
         {/* Mobile Menu Button */}
         {user && (
           <div className="md:hidden">
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-white p-1"
               aria-label="Toggle menu"
@@ -96,8 +96,8 @@ const Header = () => {
           <div className="text-white text-sm text-center">
             {user?.displayName || user?.email}
           </div>
-          <button 
-            onClick={handleSignOut} 
+          <button
+            onClick={handleSignOut}
             className="w-full font-bold bg-red-600 hover:bg-red-700 p-2 text-white rounded-md transition-colors"
           >
             Sign Out

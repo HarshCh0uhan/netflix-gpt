@@ -10,7 +10,7 @@ const Videobackground = ({ movieId }) => {
   if (!trailerVideo) return null;
 
   return (
-    <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[85vh] lg:h-screen overflow-hidden">
+    <div className="relative w-full h-[58vh] sm:h-[70vh] md:h-[79vh] lg:h-screen overflow-hidden">
       <div className="absolute bottom-1/12 lg:top-0 md:top-0 lg:left-0 md:left-0 w-full h-full">
         <iframe
           className="w-full h-full object-cover scale-[3] md:scale-[2.7] lg:scale-[1.3]"

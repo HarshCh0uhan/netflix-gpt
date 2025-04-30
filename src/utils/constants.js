@@ -5,12 +5,15 @@ export const LOGO_URL =
   "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
 
 export const PHOTO_URL =
-  "https://i.pinimg.com/736x/7d/22/64/7d2264ff7c606916f667c81b27c706a2.jpg";
+  "https://i.pinimg.com/originals/3f/74/6f/3f746fe83d284717c0a606085f315cd5.jpg";
 
 export const API_OPTIONS = {
-  method: 'GET',
+  method: "GET",
   headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MWQ0YTQzNWRkOGZiZDRjOWU4NzYxMTZiOWNiN2JkMiIsIm5iZiI6MTc0NTkxODcwMi43MTcsInN1YiI6IjY4MTA5YWVlYmEyNDFkOGFlYTgxMzlkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Q9B5wvtkI3mtwQtasYWRPCUI3YkkHzlCGNB0F9pfU3g'
-  }
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MWQ0YTQzNWRkOGZiZDRjOWU4NzYxMTZiOWNiN2JkMiIsIm5iZiI6MTc0NTkxODcwMi43MTcsInN1YiI6IjY4MTA5YWVlYmEyNDFkOGFlYTgxMzlkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Q9B5wvtkI3mtwQtasYWRPCUI3YkkHzlCGNB0F9pfU3g",
+  },
 };
+
+export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
