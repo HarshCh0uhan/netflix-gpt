@@ -13,11 +13,11 @@ const MainContainer = () => {
     </div>
   );
 
-  const mainMovie = movies[4];
+  const mainMovie = movies[0];
   // console.log(mainMovie);
 
   return (
-    <div className="pt-[30%] bg-black md:pt-0">
+    <div className="pt-[30%] bg-black md:pt-0 h-1/2">
       <VideoTitle
         title={mainMovie?.original_title}
         overview={mainMovie?.overview}

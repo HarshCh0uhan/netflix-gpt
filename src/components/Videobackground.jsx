@@ -7,16 +7,20 @@ const Videobackground = ({ movieId }) => {
 
   useGetMovieTrailer(movieId);
 
+  if (!trailerVideo) return null;
+
   return (
-    <div className="relative w-full overflow-hidden pt-[56.25%]"> {/* 16:9 aspect ratio */}
-      <iframe
-        className="absolute top-0 left-0 w-full h-full object-cover"
-        src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=${trailerVideo?.key}`}
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
+    <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[85vh] lg:h-screen overflow-hidden">
+      <div className="absolute bottom-1/12 lg:top-0 md:top-0 lg:left-0 md:left-0 w-full h-full">
+        <iframe
+          className="w-full h-full object-cover scale-[3] md:scale-[2.7] lg:scale-[1.3]"
+          src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&showinfo=0&loop=1&playlist=${trailerVideo?.key}`}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="autoplay; fullscreen"
+          allowFullScreen
+        ></iframe>
+      </div>
     </div>
   );
 };
