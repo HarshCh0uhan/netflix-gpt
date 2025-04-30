@@ -8,13 +8,14 @@ const Videobackground = ({ movieId }) => {
   useGetMovieTrailer(movieId);
 
   return (
-    <div>
+    <div className="relative w-full overflow-hidden pt-[56.25%]"> {/* 16:9 aspect ratio */}
       <iframe
-        className="absolute w-full h-full"
-        src={
-          "https://www.youtube.com/embed/mdfrG2cLK58?si=" + trailerVideo?.key
-        }
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=${trailerVideo?.key}`}
         title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
       ></iframe>
     </div>
   );

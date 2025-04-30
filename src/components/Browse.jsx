@@ -8,7 +8,7 @@ const Browse = () => {
   useNowPlayMovies();
 
   return (
-    <div className="mx-20 min-h-screen relative">
+    <div>
       <Header />
       <MainContainer />
       <SecondaryContainer />
