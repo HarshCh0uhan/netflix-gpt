@@ -10,7 +10,7 @@ const MainContainer = () => {
   if (!movies) return;
 
   const mainMovie = movies[0];
-  //   console.log(mainMovie);
+  console.log(mainMovie);
 
   return (
     <div className="relative">
@@ -22,7 +22,7 @@ const MainContainer = () => {
             overview={mainMovie?.overview}
           />
         </div>
-      <SecondaryContainer />
+        <SecondaryContainer />
       </div>
     </div>
   );
