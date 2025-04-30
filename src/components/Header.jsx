@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((store) => store.user)
+  const user = useSelector((store) => store.user);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -38,23 +38,23 @@ const Header = () => {
       }
     });
 
-    return () => unsubscribe()
+    return () => unsubscribe();
   }, []);
 
   return (
     <div className="flex justify-between">
-      <div className="size-36">
-        <img src={LOGO_URL} alt="Logo" />
-      </div>
-      {user && <div className="flex m-4 h-full">
-        <img src={user?.photoURL} alt="Photo" className="w-10 rounded-lg" />
-        <button
-          className="w-24 bg-red-600 p-2 rounded-md font-bold text-sm sm:text-base cursor-pointer mx-4 h-full"
-          onClick={handleSignOut}
-        >
-          Sign Out
-        </button>
-      </div>}
+      <img src={LOGO_URL} alt="Logo" />
+      {user && (
+        <div className="flex m-4 h-full">
+          <img src={user?.photoURL} alt="Photo" className="w-10 rounded-lg" />
+          <button
+            className="w-24 bg-red-600 p-2 rounded-md font-bold text-sm sm:text-base cursor-pointer mx-4 h-full"
+            onClick={handleSignOut}
+          >
+            Sign Out
+          </button>
+        </div>
+      )}
     </div>
   );
 };

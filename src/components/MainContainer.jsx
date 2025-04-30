@@ -10,19 +10,18 @@ const MainContainer = () => {
   if (!movies) return;
 
   const mainMovie = movies[0];
-  console.log(mainMovie);
+  // console.log(mainMovie);
 
   return (
     <div className="relative">
       <div className="relative h-[80vh]">
-        <Videobackground />
+        <Videobackground movieId={mainMovie?.id} />
         <div className="flex flex-col justify-center">
           <VideoTitle
             title={mainMovie?.original_title}
             overview={mainMovie?.overview}
           />
         </div>
-        <SecondaryContainer />
       </div>
     </div>
   );
