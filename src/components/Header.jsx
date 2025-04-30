@@ -13,6 +13,8 @@ const Header = () => {
   const user = useSelector((store) => store.user);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // console.log(auth);
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {})
@@ -58,7 +60,7 @@ const Header = () => {
               src={user?.photoURL}
             />
             <div className="hidden lg:block text-white text-sm">
-              {user?.displayName || user?.email}
+              {user?.displayName}
             </div>
             <button 
               onClick={handleSignOut} 

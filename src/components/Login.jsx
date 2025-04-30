@@ -17,24 +17,24 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
-  const name = useRef(null);
 
   const dispatch = useDispatch();
 
   const handleSignIn = () => {
     // Validate inputs
-    // if (name != null) {
-    //   console.log(name.current);
-    // }
-    // console.log(email.current.value);
-    // console.log(password.current.value);
+    if (name != null) {
+      console.log(name.current.value);
+    }
+    console.log(email.current.value);
+    console.log(password.current.value);
 
     const message = checkValidData(
       email.current.value,
       password.current.value,
-      name.current
+      // name.current.value
     );
 
     if (message) {
@@ -44,6 +44,9 @@ const Login = () => {
 
     if (!isSignInForn) {
       // Sign Up Logic
+      const username = name?.current?.value;
+
+      console.log(username);
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
@@ -52,12 +55,12 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          
-          const displayName = name.current ? name.current.value : "User";
+          // console.log(username);
+          // console.log(user);
           
           // Update profile with name and photo URL
           updateProfile(user, {
-            displayName: displayName,
+            displayName: username,
             photoURL: PHOTO_URL
           })
             .then(() => {
