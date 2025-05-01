@@ -25,11 +25,11 @@ const Login = () => {
 
   const handleSignIn = () => {
     // Validate inputs
-    if (name != null) {
-      console.log(name.current.value);
-    }
-    console.log(email.current.value);
-    console.log(password.current.value);
+    // if (name != null) {
+    //   console.log(name.current.value);
+    // }
+    // console.log(email.current.value);
+    // console.log(password.current.value);
 
     const message = checkValidData(
       email.current.value,
