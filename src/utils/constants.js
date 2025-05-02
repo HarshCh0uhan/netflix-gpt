@@ -12,7 +12,7 @@ export const API_OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MWQ0YTQzNWRkOGZiZDRjOWU4NzYxMTZiOWNiN2JkMiIsIm5iZiI6MTc0NTkxODcwMi43MTcsInN1YiI6IjY4MTA5YWVlYmEyNDFkOGFlYTgxMzlkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Q9B5wvtkI3mtwQtasYWRPCUI3YkkHzlCGNB0F9pfU3g",
+      `Bearer ${process.env.AUTHORIZATION_KEY}`,
   },
 };
 

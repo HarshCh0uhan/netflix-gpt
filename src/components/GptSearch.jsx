@@ -4,7 +4,7 @@ import GptMovieSuggetions from "./GptMovieSuggetions";
 import { BG_URL } from "../utils/constants";
 
 const GptSearch = () => {
-  console.log(process.env.OPENAI_KEY + " " + process.env.AUTHORIZATION_KEY);
+  // console.log(process.env.OPENAI_KEY + " " + process.env.AUTHORIZATION_KEY);
 
   return (
     <div>
