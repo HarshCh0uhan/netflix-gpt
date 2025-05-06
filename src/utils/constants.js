@@ -5,7 +5,7 @@ export const LOGO_URL =
   "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
 
 export const PHOTO_URL =
-  "https://i.pinimg.com/736x/7d/47/87/7d4787ea8cb906defbea0fb03be0f275.jpg";
+  "https://pbs.twimg.com/media/EmKP85gXUAEeeug.jpg";
 
 export const API_OPTIONS = {
   method: "GET",

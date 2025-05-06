@@ -46,7 +46,7 @@ const Login = () => {
       // Sign Up Logic
       const username = name?.current?.value;
 
-      console.log(username);
+      // console.log(username);
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
