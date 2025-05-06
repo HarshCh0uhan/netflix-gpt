@@ -5,9 +5,14 @@ import ai from "../utils/openai";
 const GptSearchBar = () => {
   const searchText = useRef();
 
+  
   const [isSearching, setIsSearching] = useState(false);
   const [error, setError] = useState(false);
-
+  
+  const movieSearch = async () => {
+    
+  }
+  
   const handleSearch = async () => {
     if (isSearching) return; // Prevent multiple requests
     setIsSearching(true);
@@ -44,6 +49,7 @@ const GptSearchBar = () => {
       setTimeout(() => setIsSearching(false), 1000); // debounce 1s
     }
   };
+  
 
   useEffect(() => {
     if (error) {
