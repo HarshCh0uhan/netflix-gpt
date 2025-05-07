@@ -3,7 +3,7 @@ import openAI from "../utils/openai";
 import ai from "../utils/openai";
 import { API_OPTIONS } from "../utils/constants";
 import { addGptMovies } from "../utils/gptSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const GptSearchBar = () => {
   const searchText = useRef();
@@ -12,6 +12,9 @@ const GptSearchBar = () => {
 
   const [isSearching, setIsSearching] = useState(false);
   const [error, setError] = useState(false);
+
+  const { movieNames } = useSelector((store) => store.gpt);
+  const isSearch = !movieNames; // Search bar centered only if no results
 
   const movieSearch = async (movie) => {
     const res = await fetch(
@@ -84,7 +87,7 @@ const GptSearchBar = () => {
   }, [error]);
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center">
+    <div className="flex items-center justify-center">
       {error && (
         <div role="alert" className="alert alert-error">
           <svg
@@ -103,16 +106,20 @@ const GptSearchBar = () => {
           <span>Error! Task failed.</span>
         </div>
       )}
-      <div className="absolute inset-0 flex items-center justify-center bottom-1/12">
+      <div
+        className={`${
+          isSearch ? "absolute inset-0 bottom-1/12" : "relative mt-20 mb-4 w-full"
+        } flex items-center justify-center`}
+      >
         <form
-          className="bg-zinc-900 w-[90%] p-5 flex items-center justify-center md:w-[60%] h-20 gap-3 rounded-lg"
+          className="bg-black/60 w-[90%] p-5 flex items-center justify-center md:w-[60%] h-20 gap-3 rounded-lg"
           onSubmit={(e) => e.preventDefault()}
         >
           <input
             ref={searchText}
             type="search"
             placeholder="Search Movies"
-            className="bg-neutral-800 w-full h-full rounded-lg text-white font-extralight md:font-semibold text-center sm:text-sm pr-3"
+            className="bg-neutral-800/80 w-full h-full rounded-lg text-white font-extralight md:font-semibold text-center sm:text-sm pr-3"
           />
           <button
             className="bg-red-700 py-2 px-5 rounded-lg font-semibold"
