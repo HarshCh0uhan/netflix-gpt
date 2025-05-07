@@ -2,9 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import openAI from "../utils/openai";
 import ai from "../utils/openai";
 import { API_OPTIONS } from "../utils/constants";
+import { addGptMovies } from "../utils/gptSlice";
+import { useDispatch } from "react-redux";
 
 const GptSearchBar = () => {
   const searchText = useRef();
+
+  const dispatch = useDispatch();
 
   const [isSearching, setIsSearching] = useState(false);
   const [error, setError] = useState(false);
@@ -19,7 +23,7 @@ const GptSearchBar = () => {
 
     // console.log(data.results[0]);
 
-    return data.results[0];
+    return data.results;
   };
 
   const handleSearch = async () => {
@@ -47,9 +51,22 @@ const GptSearchBar = () => {
 
       // Search for Movies
 
-      const searchedMovies = await Promise.all(res?.text.split(",").map((movie) =>  movieSearch(movie.trim())))
+      const tmdbResults = res?.text.split(",").map((movie) => movie.trim());
+
+      console.log(tmdbResults);
+
+      const searchedMovies = await Promise.all(
+        tmdbResults.map((movie) => movieSearch(movie))
+      );
 
       console.log(searchedMovies);
+
+      dispatch(
+        addGptMovies({
+          movieNames: tmdbResults,
+          movieResults: searchedMovies,
+        })
+      );
     } catch (err) {
       console.error(err);
     } finally {
