@@ -50,8 +50,6 @@ const GptSearchBar = () => {
       const searchedMovies = await Promise.all(res?.text.split(",").map((movie) =>  movieSearch(movie.trim())))
 
       console.log(searchedMovies);
-      
-      // const searchedMovies = gptMovies.map((movie) => )
     } catch (err) {
       console.error(err);
     } finally {
