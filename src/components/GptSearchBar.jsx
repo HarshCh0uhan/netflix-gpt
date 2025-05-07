@@ -17,7 +17,7 @@ const GptSearchBar = () => {
 
     const data = await res.json();
 
-    console.log(data.results[0]);
+    // console.log(data.results[0]);
 
     return data.results[0];
   };
@@ -45,20 +45,12 @@ const GptSearchBar = () => {
         contents: gptQuery,
       });
 
-      const gptMovies = res?.text.split(", ").map((movie) => {
-        // console.log(movie);
-        movie.trim();
-        movieSearch(movie);
-      });
-
-      // console.log(searchText.current.value);
-
-      if (!gptMovies) setError(true);
-
-      // console.log(gptMovies);
-
       // Search for Movies
 
+      const searchedMovies = await Promise.all(res?.text.split(",").map((movie) =>  movieSearch(movie.trim())))
+
+      console.log(searchedMovies);
+      
       // const searchedMovies = gptMovies.map((movie) => )
     } catch (err) {
       console.error(err);
