@@ -14,15 +14,15 @@ const Browse = () => {
   // console.log(showGptSearch);
 
   return (
-    <div className="bg-black">
+    <div>
       <Header />
       {showGptSearch ? (
         <GptSearch />
       ) : (
-        <>
+        <div className="bg-black">
           <MainContainer />
           <SecondaryContainer />
-        </>
+        </div>
       )}
     </div>
   );
