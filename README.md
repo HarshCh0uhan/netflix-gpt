@@ -1,5 +1,7 @@
 # Netflix GPT
 
+# Impoertant Note (TMDB is Banned in India) : Go to your Browser Settings then Search DNS enable it the in the customize choose Google(Public DNS)
+
 ## Templates
 
 ### Template | Should You Use It? | Why
