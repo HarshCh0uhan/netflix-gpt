@@ -1,15 +1,19 @@
-// import OpenAI from "openai";
-
-// const openAI = new OpenAI({
-//     apiKey: process.env.GEMINI_KEY,
-//     baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
-//     dangerouslyAllowBrowser: true,
-// });
-
-// export default openAI;
-
 import { GoogleGenAI } from "@google/genai";
+import { getApiKey } from "./constants";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_KEY });
+// Function to initialize GoogleGenAI with the API key
+export const initializeAI = async () => {
+  const apiKey = await getApiKey('GEMINI_API_KEY');
+  return new GoogleGenAI({ apiKey });
+};
+
+// For default export compatibility
+let ai = null;
+
+// Initialize AI instance (to be called once at app startup)
+export const setupAI = async () => {
+  ai = await initializeAI();
+  return ai;
+};
 
 export default ai;

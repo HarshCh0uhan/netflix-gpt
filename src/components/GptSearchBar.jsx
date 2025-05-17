@@ -1,61 +1,75 @@
 import React, { useEffect, useRef, useState } from "react";
-import openAI from "../utils/openai";
-import ai from "../utils/openai";
-import { API_OPTIONS } from "../utils/constants";
+import { setupAI, initializeAI } from "../utils/openai";
+import { getApiOptions } from "../utils/constants";
 import { addGptMovies } from "../utils/gptSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const GptSearchBar = () => {
   const searchText = useRef();
-
   const dispatch = useDispatch();
-
+  
   const [isSearching, setIsSearching] = useState(false);
   const [error, setError] = useState(false);
+  const [aiInstance, setAiInstance] = useState(null);
 
   const { movieNames } = useSelector((store) => store.gpt);
   const isSearch = !movieNames; // Search bar centered only if no results
 
+  // Initialize AI on component mount
+  useEffect(() => {
+    const initAI = async () => {
+      try {
+        const ai = await initializeAI();
+        setAiInstance(ai);
+      } catch (err) {
+        console.error("Failed to initialize AI:", err);
+        setError(true);
+      }
+    };
+    
+    initAI();
+  }, []);
+
   const movieSearch = async (movie) => {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
-      API_OPTIONS
-    );
+    try {
+      const apiOptions = await getApiOptions();
+      const res = await fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
+        apiOptions
+      );
 
-    const data = await res.json();
-
-    // console.log(data.results[0]);
-
-    return data.results;
+      const data = await res.json();
+      return data.results;
+    } catch (err) {
+      console.error("Error searching for movie:", err);
+      setError(true);
+      return [];
+    }
   };
 
   const handleSearch = async () => {
-    if (isSearching) return; // Prevent multiple requests
+    if (isSearching || !aiInstance) return; // Prevent multiple requests
     setIsSearching(true);
 
     try {
-      if (!searchText.current.value) setError(true);
+      if (!searchText.current.value) {
+        setError(true);
+        setIsSearching(false);
+        return;
+      }
 
       const gptQuery =
         "Act as a Movie Recommendation system and suggest some movies for the query : " +
         searchText.current.value +
         ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya.";
 
-      // const res = await openAI.chat.completions.create({
-      //   messages: [{ role: "user", content: gptQuery }],
-      //   model: "gpt-3.5-turbo",
-      // });
-      // console.log(res.choices[0].message);
-
-      const res = await ai.models.generateContent({
+      const res = await aiInstance.models.generateContent({
         model: "gemini-2.0-flash",
         contents: gptQuery,
       });
 
       // Search for Movies
-
       const tmdbResults = res?.text.split(",").map((movie) => movie.trim());
-
       console.log(tmdbResults);
 
       const searchedMovies = await Promise.all(
@@ -72,6 +86,7 @@ const GptSearchBar = () => {
       );
     } catch (err) {
       console.error(err);
+      setError(true);
     } finally {
       setTimeout(() => setIsSearching(false), 1000); // debounce 1s
     }
@@ -122,10 +137,11 @@ const GptSearchBar = () => {
             className="bg-neutral-800/80 w-full h-full rounded-lg text-white font-extralight md:font-semibold text-center sm:text-sm pr-3"
           />
           <button
-            className="bg-red-700 py-2 px-5 rounded-lg font-semibold"
+            className={`${isSearching ? 'bg-gray-600' : 'bg-red-700'} py-2 px-5 rounded-lg font-semibold`}
             onClick={handleSearch}
+            disabled={isSearching || !aiInstance}
           >
-            Search
+            {isSearching ? 'Searching...' : 'Search'}
           </button>
         </form>
       </div>
