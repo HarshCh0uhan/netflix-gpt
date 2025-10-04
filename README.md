@@ -1,5 +1,7 @@
 # Netflix GPT
 
+# Important Note (TMDB is Banned in India) : Go to your Browser Settings then Search DNS enable it the in the customize choose Google(Public DNS) (Now this link will work https://netflix-gpt-85139.web.app/)
+
 ## Templates
 
 ### Template | Should You Use It? | Why
