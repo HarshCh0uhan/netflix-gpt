@@ -28,8 +28,15 @@ remoteConfig.settings.minimumFetchIntervalMillis = process.env.NODE_ENV === 'dev
 // Fetch remote config values
 export const fetchRemoteConfig = async () => {
   try {
-    // Fetch and activate the fetched Remote Config
     await fetchAndActivate(remoteConfig);
+    console.log("Remote Config fetched successfully!");
+    
+    // Test logging the keys (remove after testing)
+    const tmdbKey = getValue(remoteConfig, 'TMDB_API_KEY').asString();
+    const geminiKey = getValue(remoteConfig, 'GEMINI_API_KEY').asString();
+    console.log("TMDB Key exists:", !!tmdbKey);
+    console.log("Gemini Key exists:", !!geminiKey);
+    
     return true;
   } catch (error) {
     console.error("Error fetching remote config:", error);

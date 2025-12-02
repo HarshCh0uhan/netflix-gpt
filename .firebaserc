@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "netflix-gpt-85139"
-  }
+    "default": "netflixgpt-3ede3",
+    "dev": "netflixgpt-3ede3"
+  },
+  "targets": {},
+  "etags": {}
 }

@@ -14,22 +14,30 @@ export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
 // Function to get API keys - supports both development and production environments
 export const getApiKey = async (keyName) => {
   // For development - use local environment variables
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' && process.env.AUTHORIZATION_KEY) {
     return keyName === 'TMDB_API_KEY' 
       ? process.env.AUTHORIZATION_KEY 
       : process.env.GEMINI_KEY;
   }
   
   // For production - use Remote Config
-  // Make sure Remote Config has been fetched at least once
-  await fetchRemoteConfig();
-  
-  // Get the key from Remote Config
-  const key = getRemoteConfigValue(keyName);
-  if (!key) {
-    console.error(`API key not found in Remote Config: ${keyName}`);
+  try {
+    // Ensure Remote Config has been fetched
+    await fetchRemoteConfig();
+    
+    // Get the key from Remote Config
+    const key = getRemoteConfigValue(keyName);
+    
+    if (!key) {
+      console.error(`API key not found in Remote Config: ${keyName}`);
+      throw new Error(`Missing API key: ${keyName}`);
+    }
+    
+    return key;
+  } catch (error) {
+    console.error(`Error getting API key ${keyName}:`, error);
+    throw error;
   }
-  return key;
 };
 
 // Function to get API options for TMDB
@@ -42,13 +50,4 @@ export const getApiOptions = async () => {
       Authorization: `Bearer ${apiKey}`,
     },
   };
-};
-
-// For backward compatibility
-export const API_OPTIONS = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${process.env.AUTHORIZATION_KEY}`,
-  },
 };
